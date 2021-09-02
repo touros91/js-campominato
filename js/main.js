@@ -15,7 +15,6 @@
 
 // versione con tra 1 e 20 e 3 bombe 
 
-
 // FUNZIONI 
 
 // creo la funzione che disegna in pagina la griglia con massimo 10 celle per riga
@@ -27,7 +26,7 @@ function griglia10 (celle) {
     }
 }
 
-// 1. creo la funzione che genera un numero random 
+// 1. creo la funzione che genera un numero random
 
 function numeroRandom (min, max) {
     return Math.floor( Math.random() * (max - min + 1) ) + min;
@@ -35,14 +34,14 @@ function numeroRandom (min, max) {
 
 // PROGRAMMA PRINCIPALE
 
-// 2. creo l'array bombe 
+// 2. creo l'array bombe (16)
 
 var bombe = [];
 
-// 3. fino a quando la lunghezza dell'array è minore di 3, genero un numero casuale, se non è presente nell'array lo pusho dentro l'array 
+// 3. fino a quando la lunghezza dell'array è minore di 16, genero un numero casuale, se non è presente nell'array lo pusho dentro l'array 
 
-while (bombe.length < 3) {
-    var numeroCasuale = numeroRandom(1, 10);
+while (bombe.length < 16) {
+    var numeroCasuale = numeroRandom(1, 100);
     if (bombe.includes(numeroCasuale) == false) {
         bombe.push(numeroCasuale);
     }
@@ -50,22 +49,31 @@ while (bombe.length < 3) {
 
 console.log(bombe);
 
-// 4. creo un evento click su una cella che mostra il contenuto della stessa e cambia il colore di background in rosso 
+// 4. creo un evento click che esegue i controlli se una cella è già stata cliccata, altrimenti controlla se la cella cliccata è una bomba e se lo è dichiara il punteggio fino a quel punto, se non è una bomba incrementa il punteggio e colora la cella di verde e una volta che tutte le celle senza bomba sono cliccate dichiara il punteggio finale
 
+let livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
 
-let campo = document.getElementById("campo");
+let numeroCelle;
 
-let celleUtente = [];
-
-let numeroCelle = 10;
+if (livello == "Facile") {
+    numeroCelle = 100;
+} else if (livello == "Medio") {
+    numeroCelle = 80;
+} else if (livello == "Difficile"){
+    numeroCelle = 50;
+}  
 
 griglia10(numeroCelle);
+
+let celleUtente = [];
 
 let celleLibere = numeroCelle - bombe.length;
 
 let punteggio = 0;
 
 var numbersClicked = [];
+
+let campo = document.getElementById("campo");
 
 campo.addEventListener(`click`,
     function(evento) {
@@ -86,10 +94,8 @@ campo.addEventListener(`click`,
 
             if (bombe.includes(sceltaUtente) == false && punteggio < celleLibere) {
                 numbersClicked.push(sceltaUtente);
-                // scelta += 1; 
-                punteggio += 1;
+                punteggio ++;
                 evento.target.classList.add("bg-lightgreen");
-                alert("Bravo non hai beccato nessuna bomba! Continua cosi!");
             } 
                 
             if (punteggio == celleLibere) {
