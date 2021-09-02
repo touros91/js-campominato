@@ -61,10 +61,7 @@ let numeroCelle = 10;
 
 griglia10(numeroCelle);
 
-
 let celleLibere = numeroCelle - bombe.length;
-
-let scelta = 0;
 
 let punteggio = 0;
 
@@ -87,15 +84,15 @@ campo.addEventListener(`click`,
                 return alert("Il tuo punteggio è: " + punteggio);
             } 
 
-            if (bombe.includes(sceltaUtente) == false && scelta < celleLibere) {
+            if (bombe.includes(sceltaUtente) == false && punteggio < celleLibere) {
                 numbersClicked.push(sceltaUtente);
-                scelta += 1; 
+                // scelta += 1; 
                 punteggio += 1;
                 evento.target.classList.add("bg-lightgreen");
                 alert("Bravo non hai beccato nessuna bomba! Continua cosi!");
             } 
                 
-            if (scelta == celleLibere) {
+            if (punteggio == celleLibere) {
                 evento.target.classList.add("bg-lightgreen");
                 alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA!");
                 return alert("Il tuo punteggio è: " + punteggio); 
