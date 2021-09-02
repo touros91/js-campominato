@@ -51,11 +51,14 @@ console.log(bombe);
 
 // 4. creo un evento click che esegue i controlli se una cella è già stata cliccata, altrimenti controlla se la cella cliccata è una bomba e se lo è dichiara il punteggio fino a quel punto, se non è una bomba incrementa il punteggio e colora la cella di verde e una volta che tutte le celle senza bomba sono cliccate dichiara il punteggio finale
 
+//BONUS: chiedo all'utente di inserire il livello di difficoltà ed in base a questo seleziono la grandezza della griglia
+
 let livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
 
 let numeroCelle;
 
 while (!isNaN(livello)) {
+    alert("Errore!!!");
     livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
 }
 
@@ -65,7 +68,7 @@ if (livello == "Facile" || livello == "facile") {
     numeroCelle = 80;
 } else if (livello == "Difficile" || livello == "difficile"){
     numeroCelle = 50;
-}  
+}
 
 griglia10(numeroCelle);
 
