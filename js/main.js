@@ -52,43 +52,54 @@ console.log(bombe);
 
 // 4. creo un evento click su una cella che mostra il contenuto della stessa e cambia il colore di background in rosso 
 
+
+let campo = document.getElementById("campo");
+
 let celleUtente = [];
 
 let numeroCelle = 10;
 
-console.log(bombe.length);
+griglia10(numeroCelle);
+
 
 let celleLibere = numeroCelle - bombe.length;
-console.log(celleLibere);
 
 let scelta = 0;
 
-griglia10(numeroCelle);
+let punteggio = 0;
 
-let campo = document.getElementById("campo");
-let clicks = 0;
+var numbersClicked = [];
 
 campo.addEventListener(`click`,
     function(evento) {
-        scelta += 1; 
-        clicks += 1;
-        let sceltaUtente = parseInt(evento.target.innerHTML);
-        while (bombe.includes(sceltaUtente) == true) {
-            evento.target.classList.add("bomba-img");
-            alert("BOMBA! BOOM! SEI ESPLOSO!");
-            clicks -=1;
-            return alert("Il tuo punteggio è: " + clicks);
-        } 
 
-        if (bombe.includes(sceltaUtente) == false && scelta < celleLibere) {
-            evento.target.classList.add("bg-lightgreen");
-            alert("Bravo non hai beccato nessuna bomba! Continua cosi!");
+        let sceltaUtente = parseInt(evento.target.innerHTML);
+
+        if (numbersClicked.includes(sceltaUtente)) {
+
+            return alert("hai già cliccato");
+
+        } else {
+
+            while (bombe.includes(sceltaUtente) == true) {
+                evento.target.classList.add("bomba-img");
+                alert("BOMBA! BOOM! SEI ESPLOSO!");
+                return alert("Il tuo punteggio è: " + punteggio);
             } 
-            
-        if (scelta == celleLibere) {
-            evento.target.classList.add("bg-lightgreen");
-            alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA!");
-            return alert("Il tuo punteggio è: " + clicks); 
-        } 
+
+            if (bombe.includes(sceltaUtente) == false && scelta < celleLibere) {
+                numbersClicked.push(sceltaUtente);
+                scelta += 1; 
+                punteggio += 1;
+                evento.target.classList.add("bg-lightgreen");
+                alert("Bravo non hai beccato nessuna bomba! Continua cosi!");
+            } 
+                
+            if (scelta == celleLibere) {
+                evento.target.classList.add("bg-lightgreen");
+                alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA!");
+                return alert("Il tuo punteggio è: " + punteggio); 
+            }   
+        }        
     } 
 );
