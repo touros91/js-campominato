@@ -22,6 +22,12 @@
     background-color: red;
 }
 
-.bg-white {
-    background-color: white;
+.bg-lightgreen {
+    background-color: lightgreen;
+}
+
+.bomba-img {
+    background-image: url("../img/bomba.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }

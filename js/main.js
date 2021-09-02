@@ -27,7 +27,6 @@ function griglia10 (celle) {
     }
 }
 
-
 // 1. creo la funzione che genera un numero random 
 
 function numeroRandom (min, max) {
@@ -38,14 +37,11 @@ function numeroRandom (min, max) {
 
 // 2. creo l'array bombe 
 
-
-
-
 var bombe = [];
 
 // 3. fino a quando la lunghezza dell'array è minore di 3, genero un numero casuale, se non è presente nell'array lo pusho dentro l'array 
 
-while (bombe.length <= 2) {
+while (bombe.length < 3) {
     var numeroCasuale = numeroRandom(1, 10);
     if (bombe.includes(numeroCasuale) == false) {
         bombe.push(numeroCasuale);
@@ -55,93 +51,44 @@ while (bombe.length <= 2) {
 console.log(bombe);
 
 // 4. creo un evento click su una cella che mostra il contenuto della stessa e cambia il colore di background in rosso 
-var celleUtente = [];
 
+let celleUtente = [];
 
-var numeroCelle = 10;
+let numeroCelle = 10;
 
 console.log(bombe.length);
 
-var celleLibere = numeroCelle - bombe.length;
+let celleLibere = numeroCelle - bombe.length;
 console.log(celleLibere);
 
-var scelta = 0;
+let scelta = 0;
 
 griglia10(numeroCelle);
 
 let campo = document.getElementById("campo");
-let CountButtonHomeClicks = -1;
+let clicks = 0;
 
 campo.addEventListener(`click`,
     function(evento) {
         scelta += 1; 
-        CountButtonHomeClicks += 1;
+        clicks += 1;
         let sceltaUtente = parseInt(evento.target.innerHTML);
-        celleUtente.push(sceltaUtente);
         while (bombe.includes(sceltaUtente) == true) {
-            evento.target.classList.add("bg-red");
+            evento.target.classList.add("bomba-img");
             alert("BOMBA! BOOM! SEI ESPLOSO!");
-            return alert("Il tuo punteggio è: " + CountButtonHomeClicks);
+            clicks -=1;
+            return alert("Il tuo punteggio è: " + clicks);
         } 
 
         if (bombe.includes(sceltaUtente) == false && scelta < celleLibere) {
-            evento.target.classList.add("bg-white");
+            evento.target.classList.add("bg-lightgreen");
             alert("Bravo non hai beccato nessuna bomba! Continua cosi!");
             } 
             
-        if (scelta === celleLibere) {
-            return alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA!");
+        if (scelta == celleLibere) {
+            evento.target.classList.add("bg-lightgreen");
+            alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA!");
+            return alert("Il tuo punteggio è: " + clicks); 
         } 
-
-
-console.log(scelta);
-
-        }
-        
-    
+    } 
 );
-
-
-
-console.log(celleUtente);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // FUNZIONE 
-
-// // creo la funzione che disegna in pagina la griglia con massimo 10 celle per riga
-
-// function griglia10 (celle) {
-//     for (var i = 1; i <= celle; i++) {
-//         document.getElementById("campo").innerHTML += `<div class="cella">${i}</div>`;
-//     }
-// }
-
-// // PROGRAMMA PRINCIPALE 
-
-
-// griglia10(10);
-
-// // 4. creo un evento click su una cella che mostra il contenuto della stessa e cambia il colore di background in rosso 
-   
-// document.getElementById("campo").addEventListener(`click`,
-//     function(evento) {
-//         alert(evento.target.innerHTML);
-//         evento.target.classList.toggle("bg-white");
-//     }
-// );
-
-
