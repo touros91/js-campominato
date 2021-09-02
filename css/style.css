@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#campo {
+    width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cella {
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+    background-color: green;
+}
+
+.bg-red {
+    background-color: red;
+}
