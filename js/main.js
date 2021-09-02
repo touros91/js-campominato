@@ -55,11 +55,15 @@ let livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "
 
 let numeroCelle;
 
-if (livello == "Facile") {
+while (!isNaN(livello)) {
+    livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
+}
+
+if (livello == "Facile" || livello == "facile") {
     numeroCelle = 100;
-} else if (livello == "Medio") {
+} else if (livello == "Medio" || livello == "medio") {
     numeroCelle = 80;
-} else if (livello == "Difficile"){
+} else if (livello == "Difficile" || livello == "difficile"){
     numeroCelle = 50;
 }  
 
