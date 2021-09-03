@@ -57,7 +57,6 @@ console.log(bombe);
 // let livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
 
 let numeroCelle;
-
 let btnAvvia = document.getElementById("avvia");
 let celleLibere;
 let punteggio;
@@ -81,24 +80,6 @@ btnAvvia.addEventListener("click",
         
     }
 );
-bombe = [];
-
-
-// while (!isNaN(livello)) {
-//     alert("Errore!!!");
-//     livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
-// }
-
-// if (livello == "Facile" || livello == "facile") {
-//     numeroCelle = 100;
-// } else if (livello == "Medio" || livello == "medio") {
-//     numeroCelle = 80;
-// } else if (livello == "Difficile" || livello == "difficile"){
-//     numeroCelle = 50;
-// }
-
-
-
 
 let campo = document.getElementById("campo");
 
