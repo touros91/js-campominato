@@ -72,7 +72,7 @@ if (livello == "Facile" || livello == "facile") {
 
 griglia10(numeroCelle);
 
-let celleUtente = [];
+// let celleUtente = [];
 
 let celleLibere = numeroCelle - bombe.length;
 
@@ -93,10 +93,10 @@ campo.addEventListener(`click`,
 
         } else {
 
-            while (bombe.includes(sceltaUtente) == true) {
+            if (bombe.includes(sceltaUtente) == true) {
                 evento.target.classList.add("bomba-img");
-                alert("BOMBA! BOOM! SEI ESPLOSO!");
-                return alert("Il tuo punteggio è: " + punteggio);
+                alert("BOMBA! BOOM! SEI ESPLOSO! Il tuo punteggio è:" + punteggio);
+                location.reload();
             } 
 
             if (bombe.includes(sceltaUtente) == false && punteggio < celleLibere) {
@@ -107,8 +107,8 @@ campo.addEventListener(`click`,
                 
             if (punteggio == celleLibere) {
                 evento.target.classList.add("bg-lightgreen");
-                alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA!");
-                return alert("Il tuo punteggio è: " + punteggio); 
+                alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA! Il tuo punteggio è: " + punteggio);
+                location.reload();
             }   
         }        
     } 
