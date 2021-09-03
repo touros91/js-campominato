@@ -37,18 +37,18 @@ function numeroRandom (min, max) {
 
 // 2. creo l'array bombe (16)
 
-var bombe = [];
+let bombe = [];
 
 // 3. fino a quando la lunghezza dell'array è minore di 16, genero un numero casuale, se non è presente nell'array lo pusho dentro l'array 
 
-while (bombe.length < 16) {
-    var numeroCasuale = numeroRandom(1, 100);
-    if (bombe.includes(numeroCasuale) == false) {
-        bombe.push(numeroCasuale);
-    }
-}
+// while (bombe.length < 16) {
+//     var numeroCasuale = numeroRandom(1, 100);
+//     if (bombe.includes(numeroCasuale) == false) {
+//         bombe.push(numeroCasuale);
+//     }
+// }
 
-console.log(bombe);
+// console.log(bombe);
 
 // 4. creo un evento click che esegue i controlli se una cella è già stata cliccata, altrimenti controlla se la cella cliccata è una bomba e se lo è dichiara il punteggio fino a quel punto, se non è una bomba incrementa il punteggio e colora la cella di verde e una volta che tutte le celle senza bomba sono cliccate dichiara il punteggio finale
 
@@ -61,27 +61,63 @@ let btnAvvia = document.getElementById("avvia");
 let celleLibere;
 let punteggio;
 let numbersClicked;
+let lunghezza;
+
+var numeroCasuale = numeroRandom(1, 100);
+
 
 btnAvvia.addEventListener("click",
     function(){
         let livello = document.getElementById("livello").value;
         if (livello == "Facile") {
             numeroCelle = 100;
+            // lunghezza = 100;
+            while (bombe.length < 16) {
+                numeroCasuale = numeroRandom(1, numeroCelle);
+                if (bombe.includes(numeroCasuale) == false) {
+                    bombe.push(numeroCasuale);
+                }
+            }
+            console.log(bombe);
+
+            
         } else if (livello == "Medio") {
             numeroCelle = 80;
+            // lunghezza = 80;
+            while (bombe.length < 16) {
+                 numeroCasuale = numeroRandom(1, numeroCelle);
+                if (bombe.includes(numeroCasuale) == false) {
+                    bombe.push(numeroCasuale);
+                }
+            }
+            console.log(bombe);
+
         } else if (livello == "Difficile") {
             numeroCelle = 50;
+            while (bombe.length < 16) {
+                 numeroCasuale = numeroRandom(1, numeroCelle);
+                if (bombe.includes(numeroCasuale) == false) {
+                    bombe.push(numeroCasuale);
+                }
+            }
+            console.log(bombe);
         }
         
         griglia10(numeroCelle);
-        celleLibere = numeroCelle - bombe.length;
+        celleLibere = numeroCelle - 16;
         punteggio = 0;
         numbersClicked = [];
-        
+
+        document.getElementById("rigioca").classList.add("visibile");
+                
+           
     }
 );
 
+// cambiare la lunghezza del numero random delle bombe quando ci sono le varie difficoltà
+
 let campo = document.getElementById("campo");
+
 
 campo.addEventListener(`click`,
     function(evento) {
@@ -96,7 +132,7 @@ campo.addEventListener(`click`,
 
             if (bombe.includes(sceltaUtente) == true) {
                 evento.target.classList.add("bomba-img");
-                alert("BOMBA! BOOM! SEI ESPLOSO! Il tuo punteggio è:" + punteggio);
+                alert("BOMBA! BOOM! SEI ESPLOSO! Il tuo punteggio è: " + punteggio);
                 location.reload();
             } 
 
@@ -110,10 +146,35 @@ campo.addEventListener(`click`,
                 evento.target.classList.add("bg-lightgreen");
                 alert("HAI VINTO! NON HAI BECCATO NESSUNA BOMBA! Il tuo punteggio è: " + punteggio);
                 location.reload();
-            }   
+                
+            }  
+            
+            document.getElementById("rigioca").addEventListener("click",
+            function(evento){
+                evento.target.classList.add("visibile");
+                location.reload();
+                griglia10(numeroCelle);
+            }
+            );
+            
         }        
     } 
 );
 
+
+// rigioca.addEventListener("click",
+//     function(evento){
+//         evento.target.classList.toggle("visibile");
+//     }
+// );
+
+
+// document.getElementById("rigioca").addEventListener("click",
+//                 function(evento){
+//                     evento.target.classList.add("visibile");
+//                     location.reload();
+//                     griglia10(numeroCelle);
+//                 }
+//                 );
 
 

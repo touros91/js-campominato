@@ -21,6 +21,11 @@ h1 {
     text-align: center;
 }
 
+label {
+    color: limegreen;
+    font-weight: bold;
+}
+
 button {
     padding: 10px;
     border: none;
@@ -52,10 +57,6 @@ button {
     background-color: green;
 }
 
-.bg-red {
-    background-color: red;
-}
-
 .bg-lightgreen {
     background-color: lightgreen;
 }
@@ -64,4 +65,12 @@ button {
     background-image: url("../img/bomba.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+#rigioca {
+    display: none;
+}
+
+#rigioca.visibile{
+    display: block;
 }
