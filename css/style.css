@@ -6,6 +6,8 @@
 
 body {
     background-image: url("../img/sfondo-militare.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
@@ -14,9 +16,25 @@ h1 {
     color: red;
 }
 
-h3 {
-    color: #54ff00;
+.scelta {
+    color: white;
     text-align: center;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    color: limegreen;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: black;
+    border-radius: 10px;
+    margin-left: 10px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid limegreen;
 }
 
 #campo {
@@ -24,6 +42,7 @@ h3 {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 .cella {

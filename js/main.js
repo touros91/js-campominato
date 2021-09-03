@@ -20,8 +20,9 @@
 // creo la funzione che disegna in pagina la griglia con massimo 10 celle per riga
 
 function griglia10 (celle) {
+    let campo = document.getElementById("campo");
+    campo.innerHTML = "";
     for (var i = 1; i <= celle; i++) {
-        let campo = document.getElementById("campo");
         campo.innerHTML += `<div class="cella">${i}</div>`;
     }
 }
@@ -53,32 +54,51 @@ console.log(bombe);
 
 //BONUS: chiedo all'utente di inserire il livello di difficoltà ed in base a questo seleziono la grandezza della griglia
 
-let livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
+// let livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
 
 let numeroCelle;
 
-while (!isNaN(livello)) {
-    alert("Errore!!!");
-    livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
-}
+let btnAvvia = document.getElementById("avvia");
+let celleLibere;
+let punteggio;
+let numbersClicked;
 
-if (livello == "Facile" || livello == "facile") {
-    numeroCelle = 100;
-} else if (livello == "Medio" || livello == "medio") {
-    numeroCelle = 80;
-} else if (livello == "Difficile" || livello == "difficile"){
-    numeroCelle = 50;
-}
+btnAvvia.addEventListener("click",
+    function(){
+        let livello = document.getElementById("livello").value;
+        if (livello == "Facile") {
+            numeroCelle = 100;
+        } else if (livello == "Medio") {
+            numeroCelle = 80;
+        } else if (livello == "Difficile") {
+            numeroCelle = 50;
+        }
+        
+        griglia10(numeroCelle);
+        celleLibere = numeroCelle - bombe.length;
+        punteggio = 0;
+        numbersClicked = [];
+        
+    }
+);
+bombe = [];
 
-griglia10(numeroCelle);
 
-// let celleUtente = [];
+// while (!isNaN(livello)) {
+//     alert("Errore!!!");
+//     livello = prompt(`Scegli un livello di difficoltà tra "Facile", "Medio" o "Difficile"`);
+// }
 
-let celleLibere = numeroCelle - bombe.length;
+// if (livello == "Facile" || livello == "facile") {
+//     numeroCelle = 100;
+// } else if (livello == "Medio" || livello == "medio") {
+//     numeroCelle = 80;
+// } else if (livello == "Difficile" || livello == "difficile"){
+//     numeroCelle = 50;
+// }
 
-let punteggio = 0;
 
-var numbersClicked = [];
+
 
 let campo = document.getElementById("campo");
 
@@ -113,3 +133,6 @@ campo.addEventListener(`click`,
         }        
     } 
 );
+
+
+
